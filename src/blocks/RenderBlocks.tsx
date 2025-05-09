@@ -7,6 +7,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { TableOfContentsBlock } from '@/blocks/TableOfContents/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -14,6 +15,8 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  'table-of-contents': TableOfContentsBlock,
+  tableOfContentsBlock: TableOfContentsBlock, // Keep for backward compatibility
 }
 
 export const RenderBlocks: React.FC<{

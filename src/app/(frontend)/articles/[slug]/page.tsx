@@ -1,3 +1,3 @@
 export default async function Article() {
-  return <div>Article Single</div>
+  ;<div>Article Template isn&apos;t finished yet</div>
 }

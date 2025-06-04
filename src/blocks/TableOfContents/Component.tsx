@@ -16,7 +16,7 @@ export const TableOfContentsBlock: React.FC<Props> = ({
   bgColor,
 }) => {
   return (
-    <div className="grid md:grid-cols-4 *:p-6 gap-x-4 -mb-12">
+    <div className="container grid md:grid-cols-4 *:p-6 gap-x-3 -mb-12">
       <div
         className={cn('md:col-span-1', className)}
         style={{ backgroundColor: `${bgColor}`, color: `${textColor || 'black'}` }}

@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import React from 'react'
+import Image from 'next/image'
 
 interface Props {
   className?: string
@@ -13,5 +13,15 @@ export const Logo = (props: Props) => {
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || 'low'
 
-  return <div>IF</div>
+  return (
+    <Image
+      className={className}
+      src="/img/logo-in.png"
+      alt="In Formation Magazine Logo"
+      width={20}
+      height={50}
+      loading={loading}
+      priority={priority === 'high'}
+    />
+  )
 }

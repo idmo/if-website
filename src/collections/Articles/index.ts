@@ -50,6 +50,17 @@ const Articles: CollectionConfig<'pages'> = {
       relationTo: 'users',
       hasMany: true,
     },
+    {
+      name: 'department',
+      label: 'Department',
+      admin: {
+        description: 'Select the department this article belongs to.',
+        position: 'sidebar',
+      },
+      type: 'relationship',
+      relationTo: 'departments',
+      hasMany: false,
+    },
   ],
 }
 

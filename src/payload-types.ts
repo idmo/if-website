@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     users: User;
     articles: Article;
+    departments: Department;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -82,7 +83,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    departments: {
+      articles: 'articles';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
@@ -90,6 +95,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -834,9 +840,31 @@ export interface Article {
   slug?: string | null;
   slugLock?: boolean | null;
   author?: (string | User)[] | null;
+  /**
+   * Select the department this article belongs to.
+   */
+  department?: (string | null) | Department;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments".
+ */
+export interface Department {
+  id: string;
+  title: string;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  issue?: ('issue-1' | 'issue-2' | 'issue-3') | null;
+  articles?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1037,6 +1065,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'departments';
+        value: string | Department;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1466,9 +1498,23 @@ export interface ArticlesSelect<T extends boolean = true> {
   slug?: T;
   slugLock?: T;
   author?: T;
+  department?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments_select".
+ */
+export interface DepartmentsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  slugLock?: T;
+  issue?: T;
+  articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

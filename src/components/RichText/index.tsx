@@ -1,4 +1,6 @@
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { TypographyJSXConverters } from 'payload-lexical-typography/converters'
+
 import {
   DefaultNodeTypes,
   SerializedBlockNode,
@@ -37,6 +39,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
 
 const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
+  ...TypographyJSXConverters,
   ...LinkJSXConverter({ internalDocToHref }),
   blocks: {
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,

@@ -68,7 +68,7 @@ export const Pages: CollectionConfig<'pages'> = {
       label: 'Subtitle',
       name: 'subtitle',
       type: 'text',
-      required: true,
+      required: false,
     },
     {
       type: 'tabs',

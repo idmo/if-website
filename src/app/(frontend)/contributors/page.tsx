@@ -15,7 +15,7 @@ export default async function Page() {
   const contributors = await payload.find({
     collection: 'contributors',
     depth: 1,
-    limit: 12,
+    limit: 100,
     overrideAccess: false,
     select: {
       name: true,
@@ -39,7 +39,7 @@ export default async function Page() {
           if (typeof result === 'object' && result !== null) {
             return (
               <div className="col-span-4 prose" key={index}>
-                <h3>{result.name}</h3>
+                <h4>{result.name}</h4>
                 <div>{result.bio}</div>
               </div>
             )

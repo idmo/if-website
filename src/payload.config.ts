@@ -14,6 +14,7 @@ import { Users } from './collections/Users'
 import { Articles } from './collections/Articles'
 import { Departments } from './collections/Departments'
 import { Contributors } from './collections/Contributors'
+import Products from './collections/products'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -67,7 +68,17 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   // database-adapter-config-end
-  collections: [Pages, Posts, Media, Categories, Users, Articles, Departments, Contributors],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Categories,
+    Users,
+    Articles,
+    Departments,
+    Contributors,
+    Products,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

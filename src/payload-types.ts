@@ -161,7 +161,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -229,7 +229,7 @@ export interface Page {
 export interface Post {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -820,7 +820,7 @@ export interface Contributor {
 export interface Article {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string | null;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {

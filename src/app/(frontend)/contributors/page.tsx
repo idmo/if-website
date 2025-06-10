@@ -1,7 +1,5 @@
 import type { Metadata } from 'next/types'
 
-import { ArticleArchive } from '@/components/ArticleArchive'
-import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
@@ -13,13 +11,13 @@ export const revalidate = 600
 export default async function Page() {
   const payload = await getPayload({ config: configPromise })
 
-  const articles = await payload.find({
-    collection: 'articles',
+  const contributors = await payload.find({
+    collection: 'contributors',
     depth: 1,
-    limit: 12,
+    limit: 100,
     overrideAccess: false,
     select: {
-      title: true,
+      name: true,
       slug: true,
       categories: true,
       meta: true,
@@ -31,16 +29,22 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Articles</h1>
+          <h1>Contributors</h1>
         </div>
       </div>
 
-      <ArticleArchive articles={articles.docs} />
-
       <div className="container">
-        {articles.totalPages > 1 && articles.page && (
-          <Pagination page={articles.page} totalPages={articles.totalPages} />
-        )}
+        {contributors.docs?.map((result, index) => {
+          if (typeof result === 'object' && result !== null) {
+            return (
+              <div className="col-span-4 prose" key={index}>
+                <h4>{result.name}</h4>
+                <div>{result.bio}</div>
+              </div>
+            )
+          }
+          return null
+        })}
       </div>
     </div>
   )

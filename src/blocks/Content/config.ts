@@ -1,6 +1,14 @@
 import type { Block, Field } from 'payload'
 
 import {
+  TextSizeFeature,
+  TextLetterSpacingFeature,
+  TextLineHeightFeature,
+  TextFontFamilyFeature,
+  TextColorFeature,
+} from 'payload-lexical-typography'
+
+import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
@@ -55,6 +63,11 @@ const columnFields: Field[] = [
           AlignFeature(),
           OrderedListFeature(),
           UnorderedListFeature(),
+          TextSizeFeature(),
+          TextLetterSpacingFeature(),
+          TextLineHeightFeature(),
+          TextFontFamilyFeature(),
+          TextColorFeature(),
         ]
       },
     }),

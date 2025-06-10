@@ -22,7 +22,7 @@ const Articles: CollectionConfig<'pages'> = {
     slug: true,
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'slug', 'updatedAt', 'status', 'department'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -47,8 +47,16 @@ const Articles: CollectionConfig<'pages'> = {
     {
       name: 'author',
       type: 'relationship',
-      relationTo: 'users',
+
+      relationTo: 'contributors',
       hasMany: true,
+
+      admin: {
+        allowCreate: true,
+        allowEdit: true,
+        description: 'Select the author(s) of this article.',
+        position: 'sidebar',
+      },
     },
     {
       name: 'department',

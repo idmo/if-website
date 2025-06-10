@@ -1,4 +1,5 @@
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+
 import { TypographyJSXConverters } from 'payload-lexical-typography/converters'
 
 import {
@@ -15,12 +16,12 @@ import {
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 
+import { BannerBlock } from '@/blocks/Banner/Component'
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
-import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
 

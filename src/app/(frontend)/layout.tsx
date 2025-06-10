@@ -33,8 +33,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               preview: isEnabled,
             }}
           />
-
-          <Header />
+          <div className="bg-black">
+            <Header />
+          </div>
           {children}
           <Footer />
         </Providers>

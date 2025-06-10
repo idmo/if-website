@@ -74,6 +74,7 @@ export interface Config {
     users: User;
     articles: Article;
     departments: Department;
+    contributors: Contributor;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -87,6 +88,9 @@ export interface Config {
     departments: {
       articles: 'articles';
     };
+    contributors: {
+      articles: 'articles';
+    };
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -96,6 +100,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
+    contributors: ContributorsSelect<false> | ContributorsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -839,7 +844,10 @@ export interface Article {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
-  author?: (string | User)[] | null;
+  /**
+   * Select the author(s) of this article.
+   */
+  author?: (string | Contributor)[] | null;
   /**
    * Select the department this article belongs to.
    */
@@ -847,6 +855,23 @@ export interface Article {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contributors".
+ */
+export interface Contributor {
+  id: string;
+  name: string;
+  email?: string | null;
+  bio?: string | null;
+  articles?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1069,6 +1094,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'departments';
         value: string | Department;
+      } | null)
+    | ({
+        relationTo: 'contributors';
+        value: string | Contributor;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1512,6 +1541,18 @@ export interface DepartmentsSelect<T extends boolean = true> {
   slug?: T;
   slugLock?: T;
   issue?: T;
+  articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contributors_select".
+ */
+export interface ContributorsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  bio?: T;
   articles?: T;
   updatedAt?: T;
   createdAt?: T;

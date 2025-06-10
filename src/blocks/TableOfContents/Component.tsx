@@ -21,9 +21,9 @@ export const TableOfContentsBlock: React.FC<Props> = ({
         className={cn('md:col-span-1', className)}
         style={{ backgroundColor: `${bgColor}`, color: `${textColor || 'black'}` }}
       >
-        <div className="mb-8 text-7xl">{chapterNumber}</div>
+        <div className="mb-8 text-7xl font-thin">{chapterNumber}</div>
         <div className="font-extrabold">{chapterTitle}</div>
-        <div className="text-sm">{chapterSubHeading}</div>
+        <div className="">{chapterSubHeading}</div>
       </div>
       <div
         className="md:col-span-3"
@@ -38,7 +38,7 @@ export const TableOfContentsBlock: React.FC<Props> = ({
               enableGutter={false}
               enableProse={false}
               key={index}
-              className="my-2"
+              className="my-2 space-y-4"
             />
           )
         })}

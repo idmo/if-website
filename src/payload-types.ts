@@ -75,6 +75,7 @@ export interface Config {
     articles: Article;
     departments: Department;
     contributors: Contributor;
+    products: Product;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -101,6 +102,7 @@ export interface Config {
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     contributors: ContributorsSelect<false> | ContributorsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -927,6 +929,56 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  title: string;
+  slug: string;
+  price: number;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  images?:
+    | {
+        image: string | Media;
+        altText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  categories?: (string | Category)[] | null;
+  variants?:
+    | {
+        name: string;
+        options?:
+          | {
+              value: string;
+              priceModifier?: number | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  inventoryCount?: number | null;
+  status?: ('draft' | 'available' | 'soldOut') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1132,6 +1184,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contributors';
         value: string | Contributor;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: string | Product;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1621,6 +1677,41 @@ export interface ContributorsSelect<T extends boolean = true> {
   email?: T;
   bio?: T;
   articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  price?: T;
+  description?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        altText?: T;
+        id?: T;
+      };
+  categories?: T;
+  variants?:
+    | T
+    | {
+        name?: T;
+        options?:
+          | T
+          | {
+              value?: T;
+              priceModifier?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  inventoryCount?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

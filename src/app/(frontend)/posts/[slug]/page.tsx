@@ -60,8 +60,6 @@ export default async function Post({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
-      {/* <PostHero post={post} /> */}
-
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
     </article>

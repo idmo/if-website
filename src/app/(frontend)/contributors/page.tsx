@@ -1,6 +1,5 @@
 import type { Metadata } from 'next/types'
 
-import { ArticleArchive } from '@/components/ArticleArchive'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'

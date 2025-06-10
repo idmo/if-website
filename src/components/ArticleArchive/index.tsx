@@ -1,8 +1,7 @@
 import { cn } from '@/utilities/ui'
 import React from 'react'
 
-import { Card, CardPostData } from '@/components/Card'
-import { stringify } from 'querystring'
+import { CardPostData } from '@/components/Card'
 
 export type Props = {
   articles: CardPostData[]

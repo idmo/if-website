@@ -1,7 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { anyone } from '../../access/anyone'
 import { authenticated } from '../../access/authenticated'
-import exp from 'constants'
 
 const Contributors: CollectionConfig = {
   slug: 'contributors',
